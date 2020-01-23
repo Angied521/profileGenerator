@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Angied521/profileGenerator#readme",
   "dependencies": {
     "axios": "^0.19.1",
-    "inquirer": "^7.0.3"
+    "inquirer": "^7.0.3",
+    "prompt": "^1.0.0"
   }
 }
