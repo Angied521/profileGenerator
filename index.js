@@ -49,6 +49,8 @@ function generateHTML(answers) {
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      <script src="print.js"></script>
+      <link rel="stylesheet" type="text/css" href="print.css">
       <title>Document</title>
     </head>
     <body>
@@ -57,21 +59,24 @@ function generateHTML(answers) {
              <h1 class="display-4">Hi! My name is ${answers.name}</h1>     
        
         <ul class="list-group">
-          <li class="list-group-item" id="color">I live in: ${location}</li>
-          <li class="list-group-item" id="color">Bio: ${bio}</li>
-          <li class="list-group-item" id="color">My favorite color is: ${answers.color}</li>
-          <li class="list-group-item">My GitHub username is: ${answers.github}</li>
-          <li class="list-group-item">My GitHub profile link is: ${gitHubLink}</li>
-          <li class="list-group-item">Number of Github followers is: ${followers}</li>
-          <li class="list-group-item">Number of Github followers is: ${following}</li>
-          <li class="list-group-item">Number of Repositories is: ${repos}</li>
-          
           <li class="list-group-item">GitHub image link is: ${url}</li>
-
-      </div>
-     
+          <li class="list-group-item">My GitHub username is: ${answers.github}</li>
+          <li class="list-group-item" id="color">My favorite color is: ${answers.color}</li>
+          
+          <li class="list-group-item">I live in: ${location}</li>
+          <li class="list-group-item">My GitHub profile link is: ${gitHubLink}</li>
+          <li class="list-group-item">My Profile Blog is: ${blog}</li>
+          
+         <li class="list-group-item">Bio: ${bio}</li>
+         <li class="list-group-item">Number of Repositories is: ${repos}</li>
+         <li class="list-group-item">Number of Github followers is: ${followers}</li>
+         <li class="list-group-item">Number of Github followers is: ${following}</li>
+        
+         <p>
+         <input type="button" id="bt" onclick="print()" value="Print PDF" />
+     </p>
     </div>
-   <script src="index.js"></script>
+ 
     </body>
     </html>`;
 }
@@ -101,7 +106,7 @@ async function getGithubProfile() {
     let githubUrl = "https://api.github.com/users/angied521"
     let res = await axios.get(githubUrl);
     let myLocation = res.data.location;
-    let blog = res.data.blog;
+    let userBlog = res.data.blog;
     let gitHubProfile = res.data.html_url;
     let nOfRepositories = res.data.public_repos;
     //let nOfStarred = res.data.starred_url;
@@ -116,6 +121,7 @@ async function getGithubProfile() {
     image = url;
     location = myLocation;
     repos = nOfRepositories;
+    blog = userBlog;
 
     console.log(`# of followers: ${nOfFollowers}\n`)
     console.log(`Location: ${myLocation}\n`)
@@ -157,7 +163,15 @@ async function changeColor() {
 }
 
 
+//print button 
 
-
+function print(doc) {
+    var objFra = document.createElement('iframe');   // Create an IFrame.
+    objFra.style.visibility = "hidden";    // Hide the frame.
+    objFra.src = doc;                      // Set source.
+    document.body.appendChild(objFra);  // Add the frame to the web page.
+    objFra.contentWindow.focus();       // Set focus.
+    objFra.contentWindow.print();      // Print it.
+}
 
 
