@@ -56,7 +56,7 @@ function generateHTML(answers) {
     <body>
       <div class="jumbotron jumbotron-fluid" id="jumbotron" style="background-color:${answers.color};">
       <div class="container">
-             <h1 class="display-4">Hi! My name is ${answers.name}</h1> 
+             <h3 class="display-4">Hi! My name is ${answers.name}</h3> 
              <div><img src="image.jpg"vwidth="100" height="100" align="center"></div>
              </br>
        
@@ -125,14 +125,7 @@ async function getGithubProfile() {
     repos = nOfRepositories;
     blog = userBlog;
 
-    console.log(`# of followers: ${nOfFollowers}\n`)
-    console.log(`Location: ${myLocation}\n`)
-    console.log(`Blog: ${blog}\n`)
-    console.log(`GitHubProfile: ${gitHubProfile}\n`)
-    console.log(`# of repositories: ${nOfRepositories}\n`)
-    //console.log(`# of stars: ${nOfStarred}\n`)
-    console.log(`# of following: ${nOfFollowing}\n`)
-    console.log(`bio: ${userBio}`)
+ 
 
 }
 
