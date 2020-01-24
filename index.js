@@ -8,6 +8,7 @@ var followers = "";
 var following = "";
 var location = "";
 
+ 
 
 //var image = "";
 
@@ -49,32 +50,33 @@ function generateHTML(answers) {
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-      <script src="print.js"></script>
-      <link rel="stylesheet" type="text/css" href="print.css">
+      
       <title>Document</title>
     </head>
     <body>
-      <div class="jumbotron jumbotron-fluid" id="jumbotron">
+      <div class="jumbotron jumbotron-fluid" id="jumbotron" style="background-color:${answers.color};">
       <div class="container">
-             <h1 class="display-4">Hi! My name is ${answers.name}</h1>     
+             <h1 class="display-4">Hi! My name is ${answers.name}</h1> 
+             <div><img src="image.jpg"vwidth="100" height="100" align="center"></div>
+             </br>
        
-        <ul class="list-group">
-          <li class="list-group-item">GitHub image link is: ${url}</li>
+         <ul class="list-group">
+    
+        
           <li class="list-group-item">My GitHub username is: ${answers.github}</li>
-          <li class="list-group-item" id="color">My favorite color is: ${answers.color}</li>
+        
           
           <li class="list-group-item">I live in: ${location}</li>
-          <li class="list-group-item">My GitHub profile link is: ${gitHubLink}</li>
-          <li class="list-group-item">My Profile Blog is: ${blog}</li>
+          <li class="list-group-item">My GitHub profile link is <a href="{{ link.url }}">${gitHubLink}</a></li>
+          <li class="list-group-item">My Profile Blog is <a href="{{ link.url }}"> ${blog}</a></li>
           
          <li class="list-group-item">Bio: ${bio}</li>
          <li class="list-group-item">Number of Repositories is: ${repos}</li>
          <li class="list-group-item">Number of Github followers is: ${followers}</li>
          <li class="list-group-item">Number of Github followers is: ${following}</li>
-        
+        </b>
          <p>
-         <input type="button" id="bt" onclick="print()" value="Print PDF" />
-     </p>
+         <input type="button" id="bt" onclick="print()" value="Print PDF" />  </p>
     </div>
  
     </body>
@@ -84,13 +86,13 @@ function generateHTML(answers) {
 promptUser()
     .then(function (answers) {
         const html = generateHTML(answers);
-        background = answers.color;
+      
         userId = answers.github;
 
         return writeFileAsync("index.html", html);
     })
     .then(function () {
-        changeColor();
+      
         console.log("successfully wrote to index.html");
     })
     .catch(function (err) {
@@ -136,6 +138,12 @@ async function getGithubProfile() {
 
 getGithubProfile();
 
+//get the user id callback from answers.github question 2 .then
+
+//async function getUserID() { param withid
+    
+
+
 // to get an image
 
 let config = {
@@ -152,15 +160,6 @@ async function getImage() {
 
 getImage();
 
-
-
-//change background color
-async function changeColor() {
-    var jumbotron = document.getElementById("jumbotron");
-
-    jumbotron.style.background = background;
-    console.log(background)
-}
 
 
 //print button 
