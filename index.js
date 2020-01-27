@@ -56,10 +56,11 @@ function generateHTML(answers) {
     <body>
       <div class="jumbotron jumbotron-fluid" id="jumbotron" style="background-color:${answers.color};">
       <div class="container">
-             <h3 class="display-4">Hi! My name is ${answers.name}</h3> 
+            <center>
+             <h4 class="display-4">Hi! My name is ${answers.name}</h4> 
              <div><img src="image.jpg"vwidth="100" height="100" align="center"></div>
              </br>
-       
+            </center>
          <ul class="list-group">
     
         
@@ -74,11 +75,20 @@ function generateHTML(answers) {
          <li class="list-group-item">Number of Repositories is: ${repos}</li>
          <li class="list-group-item">Number of Github followers is: ${followers}</li>
          <li class="list-group-item">Number of Github followers is: ${following}</li>
-        </b>
-         <p>
-         <input type="button" id="bt" onclick="print()" value="Print PDF" />  </p>
+        </br>
+      
     </div>
- 
+    <center>
+    <div  style="background-color:${location}; border: gray 5px solid; width:650px; height:350px; margin-bottom: 50px;">
+      <h5>Current city ${location}</h5>
+      <img src="https://maps.googleapis.com/maps/api/staticmap?center=${location}&zoom=14&size=600x300&key=AIzaSyDIEVzD85LZ_BWwmWAD2qPxTiUNGgA28YI" align="middle">
+    </div>
+
+    <p>
+    <input type="button" id="bt" onclick="print()" value="Print PDF" />  </p>
+  </center>
+
+
     </body>
     </html>`;
 }
@@ -129,15 +139,30 @@ async function getGithubProfile() {
 
 }
 
-getGithubProfile();
+//getUserId();
 
 //get the user id callback from answers.github question 2 .then
 
 //async function getUserID() { param withid
     
 
+//let config = {
+ //   responseType: 'stream'
+//};
+
+//let url = 'https://avatars1.githubusercontent.com/u/55807878?v=4';
+
+//async function getUserId() {
+
+  //  let resp = await axios.get(url, config);
+  //  resp.data.pipe(fs.createWriteStream('image.jpg'));
+//}
+
+//getUserId();
+
 
 // to get an image
+getGithubProfile();
 
 let config = {
     responseType: 'stream'
@@ -146,7 +171,6 @@ let config = {
 let url = 'https://avatars1.githubusercontent.com/u/55807878?v=4';
 
 async function getImage() {
-
     let resp = await axios.get(url, config);
     resp.data.pipe(fs.createWriteStream('image.jpg'));
 }
@@ -156,7 +180,6 @@ getImage();
 
 
 //print button 
-
 function print(doc) {
     var objFra = document.createElement('iframe');   // Create an IFrame.
     objFra.style.visibility = "hidden";    // Hide the frame.
